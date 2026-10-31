@@ -1,0 +1,22 @@
+domain,raw_value,clean_value
+outcome,delivered,delivered
+outcome,delivereds,delivered
+outcome,refused,refused
+outcome,refuseds,refused
+outcome,damaged,damaged
+outcome,damageds,damaged
+outcome,failed not home,failed_not_home
+outcome,failed not homes,failed_not_home
+route_status,planned,planned
+route_status,planneds,planned
+route_status,in progress,in_progress
+route_status,in progresss,in_progress
+route_status,completed,completed
+route_status,completeds,completed
+route_status,cancelled,cancelled
+route_status,cancelleds,cancelled
+route_status,canceled,cancelled
+vehicle_type,small van,small_van
+vehicle_type,large van,large_van
+vehicle_type,electric van,electric_van
+vehicle_type,refrigerated truck,refrigerated_truck

@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: fct_deliveries
+    description: "One row per clean delivery, enriched with depot, weather and bank holiday of the business day."
+    columns:
+      - name: delivery_id
+        data_tests: [unique, not_null]
+
+  - name: gold_delivery_performance_daily
+    description: "UC1 - OTIF per depot and business day (target 85 %)."
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [business_date, depot_id]
+
+  - name: gold_weather_impact
+    description: "UC2 - delivery success and lateness by rain category, per depot."
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [depot_id, rain_category]
+
+  - name: gold_revenue_weekly
+    description: "UC3 - billed and lost delivery fees per week and depot, GBP and EUR."
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [week_start, depot_id]
+    columns:
+      - name: delivery_fee_eur
+        data_tests: [not_null]          # fails if an exchange rate is missing for a week
+
+  - name: gold_fleet_activity_daily
+    description: "Van usage per day from the GPS stream."
+    data_tests:
+      - unique_combination:
+          arguments:
+            columns: [business_date, vehicle_id]

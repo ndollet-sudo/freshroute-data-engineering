@@ -1,0 +1,26 @@
+# FreshRoute Logistics - bronze (loaded by the ingestion jobs) -> silver (typed, cleaned, quarantine) -> gold (use cases)
+name: freshroute
+version: "1.0.0"
+config-version: 2
+profile: freshroute
+require-dbt-version: [">=1.11.0", "<1.12.0"]
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+models:
+  freshroute:
+    silver:
+      +schema: SILVER
+      +materialized: table
+    gold:
+      +schema: GOLD
+      +materialized: table
+
+seeds:
+  freshroute:
+    +schema: SILVER
+    depot_cities:
+      +column_types: {latitude: float, longitude: float}

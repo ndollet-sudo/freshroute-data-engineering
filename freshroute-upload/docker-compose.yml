@@ -1,0 +1,33 @@
+services:
+  # The on-prem operational database of FreshRoute (source 2). wal_level=logical would allow CDC with Debezium.
+  postgres:
+    image: postgres:16.4
+    command: ["postgres", "-c", "wal_level=logical"]
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    ports: ["5432:5432"]
+    volumes:
+      - pgdata:/var/lib/postgresql/data      # the volume survives "docker rm"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DB}"]
+      interval: 5s
+      retries: 10
+
+  # One image for every ingestion job and for dbt
+  ingest:
+    build: .
+    image: freshroute-pipeline:1.0.0
+    env_file: .env
+    environment:
+      PG_HOST: postgres
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./data:/app/data:ro
+      - ./secrets:/secrets:ro                # Snowflake private key, never inside the image
+
+volumes:
+  pgdata:

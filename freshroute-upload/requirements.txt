@@ -1,0 +1,9 @@
+# Versions resolved together (dbt-snowflake 1.11 requires snowflake-connector-python 4.x)
+snowflake-connector-python[pandas]==4.8.0
+cryptography==50.0.2
+pyarrow==26.0.0
+psycopg2-binary==2.9.10
+pandas==2.3.3
+requests==2.34.2
+dbt-core==1.11.16
+dbt-snowflake==1.11.6

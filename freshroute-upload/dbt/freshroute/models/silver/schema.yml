@@ -1,0 +1,53 @@
+version: 2
+
+models:
+  - name: stg_depots
+    columns:
+      - name: depot_id
+        data_tests: [unique, not_null]
+
+  - name: stg_vehicles
+    columns:
+      - name: vehicle_id
+        data_tests: [unique, not_null]
+
+  - name: stg_routes
+    columns:
+      - name: route_id
+        data_tests: [unique, not_null]
+      - name: route_status
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [planned, in_progress, completed, cancelled]
+              config:
+                severity: warn          # a new spelling is reported, not blocking
+
+  - name: silver_deliveries
+    description: "Clean deliveries. Grain: one row per delivery_id. Latest batch wins."
+    columns:
+      - name: delivery_id
+        data_tests: [unique, not_null]                        # KEY check
+      - name: route_id
+        data_tests:
+          - relationships:                                    # completeness: every delivery belongs to a route
+              arguments:
+                to: ref('stg_routes')
+                field: route_id
+      - name: outcome
+        data_tests:
+          - accepted_values:
+              arguments:
+                values: [delivered, refused, damaged, failed_not_home]
+
+  - name: silver_gps_pings
+    columns:
+      - name: ping_id
+        data_tests: [unique, not_null]
+
+  - name: stg_fx_rates
+    columns:
+      - name: rate_date
+        data_tests: [unique, not_null]
+      - name: gbp_to_eur
+        data_tests: [not_null]

@@ -1,0 +1,14 @@
+# Copy to profiles.yml (git-ignored). Secrets come from environment variables, never from this file.
+freshroute:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_USER') }}"
+      private_key_path: "{{ env_var('SNOWFLAKE_PRIVATE_KEY_PATH') }}"
+      role: FRESHROUTE_ENGINEER
+      warehouse: FRESHROUTE_WH
+      database: FRESHROUTE
+      schema: SILVER
+      threads: 4
