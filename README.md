@@ -1,4 +1,4 @@
-# FreshRoute Logistics — pipeline data de livraison
+# FreshRoute Logistics
 
 ## 1. L'entreprise
 
