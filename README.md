@@ -1,9 +1,6 @@
 # FreshRoute Logistics — pipeline data de livraison
 
-> Projet Data Engineering (Albert School) · Groupe de 3 · Industrie : **logistique / livraison de courses à domicile**
-> Données internes : générateur du cours `tools/messy_data.py` (seed **42**, mess **medium**, 3 batches = 3 jours) · Données externes : 3 API publiques réelles.
-
-## 1. L'entreprise (fictive)
+## 1. L'entreprise
 
 **FreshRoute Logistics** livre les commandes de courses en ligne de supermarchés partenaires, depuis **8 dépôts** (Londres ×2, Birmingham, Manchester, Leeds, Bristol, Belfast, Paris) avec **~130 véhicules** (petites et grandes camionnettes, camionnettes électriques, camions frigorifiques). Elle appartient à un groupe européen qui suit ses résultats en euros.
 
@@ -150,8 +147,8 @@ Contrôles qualité :
 
 | Membre | Possède |
 |---|---|
-| Membre 1 | Ingestion : fichiers, incrémental, stream GPS, API + Docker |
-| Membre 2 | dbt : nettoyage Silver, quarantaine, modèles Gold, tests, docs |
-| Membre 3 | Terraform, Airflow, alertes, dashboard, coûts |
+| Nicolas Dollet | Ingestion : fichiers, incrémental, stream GPS, API + Docker |
+| Naye Kanoute | dbt : nettoyage Silver, quarantaine, modèles Gold, tests, docs |
+| Danila Zhekhovskii | Terraform, Airflow, alertes, dashboard, coûts |
 
 *Ressources du cours réutilisées :* `tools/messy_data.py` (générateur), macros `clean_text`, `clean_int`, `clean_money` et `clean_ts` (cookbook de nettoyage), et le loader Postgres (adapté).# freshroute-data-engineering
