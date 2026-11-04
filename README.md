@@ -1,5 +1,7 @@
 # FreshRoute Logistics
 
+## 1. Link of the demo
+https://drive.google.com/file/d/1T1U5KEptGpF-fiXA-_iScpmw8d9pUd6v/view?usp=drive_link
 ## 1. L'entreprise
 
 **FreshRoute Logistics** livre les commandes de courses en ligne de supermarchés partenaires, depuis **8 dépôts** (Londres ×2, Birmingham, Manchester, Leeds, Bristol, Belfast, Paris) avec **~130 véhicules** (petites et grandes camionnettes, camionnettes électriques, camions frigorifiques). Elle appartient à un groupe européen qui suit ses résultats en euros.
